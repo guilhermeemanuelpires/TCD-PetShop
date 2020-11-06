@@ -1,11 +1,20 @@
 const { User } = require('../models');
+const bcrypt = require('bcryptjs');
 
-module.exports = {    
+module.exports = {
 
     async register(req, res) {
         const { user } = req.body;
         try {
-            console.log(user);
+
+            if (!user) {
+                throw "Json invalido";
+            }          
+
+            // criptografar senha antes mesmo de inserir ao banco
+            const salt = bcrypt.genSaltSync(10);
+            user.password = bcrypt.hashSync(user.password, salt);            
+
             let createdUser = await User.create(user);
             console.log(createdUser);
             createdUser = createdUser.get({ plain: true });
@@ -19,16 +28,29 @@ module.exports = {
 
     async login(req, res) {
         const { username, password } = req.body;
+        try {
+            if (!username || !password) {
+                return res.status(400).send('Usuário e/ou senha não informado(a)'); // Bad Request
+            }
 
-        if (!username || !password) {
-            return res.status(400).send('Usuário e/ou senha não informado(a)'); // Bad Request
+            /* busca u súario */
+            let user = await User.findOne({
+                where: { username }
+            });
+
+            if (user) {
+
+                if (!bcrypt.compareSync(password, user.password)) {
+                    return res.status(404).send({ errorMsg: 'Senha inválida!' });
+                }               
+
+                return res.status(200).send({sucessMsg : 'Login realizado com sucesso'});
+            }
+
+            return res.status(400).render('login', { errorMsg: 'Usuário inválido!' });
+
+        } catch (error) {
+            return res.status(400).send({ errorMsg: error.message });
         }
-
-        /* Usúario */
-        let user = await User.findOne({
-            where: { username }
-        });
-
     }
-
 }

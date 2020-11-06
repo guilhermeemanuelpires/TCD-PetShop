@@ -20,7 +20,8 @@ module.exports = options = {
   swaggerDefinition,
   apis: [
     "./src/router.js",
-    "./src/models/User.js"
+    "./src/models/User.js",
+    "./src/models/Pet.js"
   ],
 };
 

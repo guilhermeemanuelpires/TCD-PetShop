@@ -31,4 +31,3 @@ if (environment === 'test') {
     console.log('Servidor iniciado na porta 3000');
   });
 }
-

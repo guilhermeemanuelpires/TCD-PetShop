@@ -8,7 +8,13 @@ var conexao = sequelize.authenticate()
     console.log('Não foi possível se conectar com o banco de dados MySql : ' + err);
   }).done();
 
+
 sequelize.User = sequelize.import('./User.js');
+sequelize.Pet = sequelize.import('./Pet.js');
+
+/* Relacionamneto */
+sequelize.User.hasMany(sequelize.Pet, { foreignKey: 'reps' });
+sequelize.Pet.belongsTo(sequelize.User, { foreignKey: 'reps' });
 
 sequelize.sync();
 

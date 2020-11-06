@@ -1,7 +1,26 @@
 /**
  *@swagger
  *definitions:
- *  User:
+ *  Auth:
+ *    type: object
+ *    required:
+ *      - path
+ *    properties:
+ *      username:
+ *        type: string
+ *        description: Nome usuário.
+ *      password:
+ *        type: string
+ *        description: Senha do usuário.
+ *    example: 
+ *      username: fulano
+ *      password: "123"
+ */
+
+/**
+ *@swagger
+ *definitions:
+ *  Register:
  *    type: object
  *    required:
  *      - path
@@ -34,8 +53,8 @@
  *       user: 
  *          name: fulano
  *          username: fulano
- *          password: 123
- *          fone: 4699999999
+ *          password: A123
+ *          fone: "4699999999"
  *          email: teste@gmail.com
  */
 
