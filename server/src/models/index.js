@@ -13,8 +13,8 @@ sequelize.User = sequelize.import('./User.js');
 sequelize.Pet = sequelize.import('./Pet.js');
 
 /* Relacionamneto */
-sequelize.User.hasMany(sequelize.Pet, { foreignKey: 'reps' });
-sequelize.Pet.belongsTo(sequelize.User, { foreignKey: 'reps' });
+sequelize.User.hasMany(sequelize.Pet, { foreignKey: 'resp' });
+sequelize.Pet.belongsTo(sequelize.User, { foreignKey: 'resp' });
 
 sequelize.sync();
 
