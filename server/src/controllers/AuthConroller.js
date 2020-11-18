@@ -9,11 +9,11 @@ module.exports = {
 
             if (!user) {
                 throw "Json invalido";
-            }          
+            }
 
             // criptografar senha antes mesmo de inserir ao banco
             const salt = bcrypt.genSaltSync(10);
-            user.password = bcrypt.hashSync(user.password, salt);            
+            user.password = bcrypt.hashSync(user.password, salt);
 
             let createdUser = await User.create(user);
             console.log(createdUser);
@@ -29,8 +29,9 @@ module.exports = {
     async login(req, res) {
         const { username, password } = req.body;
         try {
+
             if (!username || !password) {
-                return res.status(400).send('Usuário e/ou senha não informado(a)'); // Bad Request
+                return res.send({ errorMsg: 'Usuário e/ou senha não informado(a)' }); // Bad Request
             }
 
             /* busca u súario */
@@ -41,16 +42,17 @@ module.exports = {
             if (user) {
 
                 if (!bcrypt.compareSync(password, user.password)) {
-                    return res.status(404).send({ errorMsg: 'Senha inválida!' });
-                }               
+                    return res.send({ errorMsg: 'Senha inválida!' });
+                } else {
+                    return res.status(200).send({ sucessMsg: 'Login realizado com sucesso!' });
+                }
 
-                return res.status(200).send({sucessMsg : 'Login realizado com sucesso'});
+            } else {
+                return res.send({ errorMsg: 'Usuário inválido!' });
             }
 
-            return res.status(400).render('login', { errorMsg: 'Usuário inválido!' });
-
         } catch (error) {
-            return res.status(400).send({ errorMsg: error.message });
+            return res.send({ errorMsg: error.message });
         }
     }
 }
