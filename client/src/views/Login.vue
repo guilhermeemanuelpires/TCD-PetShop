@@ -42,12 +42,12 @@
               v-model="model.password"
             >
             </base-input>
-            
-            <div class="text-center" >
-              <span  style="color: #f5365c">{{ retorno.erro.errorMsg }}</span>
+
+            <div class="text-center">
+              <span style="color: #f5365c">{{ retorno.erro.errorMsg }}</span>
             </div>
             <div class="text-center">
-              <span style="color : #2dce89">{{ retorno.erro.sucessMsg }}</span>
+              <span style="color: #2dce89">{{ retorno.erro.sucessMsg }}</span>
             </div>
             <div class="text-center">
               <base-button @click="Login()" type="primary" class="my-4"
@@ -85,6 +85,9 @@ export default {
     Login() {
       Auth.Login(this.model).then((response) => {
         this.retorno.erro = response.data;
+        if (this.retorno.erro.status === 200) {
+          this.$router.push("/profile");
+        }
       });
     },
   },

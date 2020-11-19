@@ -16,13 +16,15 @@ module.exports = {
             user.password = bcrypt.hashSync(user.password, salt);
 
             let createdUser = await User.create(user);
-            console.log(createdUser);
+
             createdUser = createdUser.get({ plain: true });
+
             delete createdUser.password;
+            
             return res.status(200).send({ user: createdUser });
         } catch (e) {
             console.log(e);
-            return res.status(400).send('Não foi possível criar o usuário');
+            return res.status(500).send('Não foi possível criar o usuário');
         }
     },
 
@@ -31,7 +33,7 @@ module.exports = {
         try {
 
             if (!username || !password) {
-                return res.send({ errorMsg: 'Usuário e/ou senha não informado(a)' }); // Bad Request
+                return res.send({ status: 400, errorMsg: 'Usuário e/ou senha não informado(a)' }); // Bad Request
             }
 
             /* busca u súario */
@@ -42,13 +44,13 @@ module.exports = {
             if (user) {
 
                 if (!bcrypt.compareSync(password, user.password)) {
-                    return res.send({ errorMsg: 'Senha inválida!' });
+                    return res.send({ status: 401, errorMsg: 'Senha inválida!' });
                 } else {
-                    return res.status(200).send({ sucessMsg: 'Login realizado com sucesso!' });
+                    return res.status(200).send({ status: 200, sucessMsg: 'Login realizado com sucesso!' });
                 }
 
             } else {
-                return res.send({ errorMsg: 'Usuário inválido!' });
+                return res.send({ status: 401, errorMsg: 'Usuário inválido!' });
             }
 
         } catch (error) {
