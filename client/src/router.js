@@ -12,7 +12,7 @@ export default new Router({
       redirect: 'dashboard',
       component: DashboardLayout,
       beforeEnter: (to, from, next) => {
-        const token = localStorage.getItem('instavue-token');
+        const token = localStorage.getItem('petshop-token');
 
         if (token) {
           next();
@@ -48,6 +48,16 @@ export default new Router({
           path: '/tables',
           name: 'tables',
           component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
+        },
+        {
+          path: '/pet',
+          name: 'pets',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Pet.vue')
+        },
+        {
+          path: '/endereco',
+          name: 'Endereço',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Pet.vue')
         }
       ]
     },

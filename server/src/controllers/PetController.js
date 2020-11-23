@@ -29,7 +29,7 @@ module.exports = {
     async update(req, res) {
         const { pet } = req.body;
         try {
-            console.log(pet);
+            
             if (!pet) {
                 throw "Json invalido";
             }
@@ -40,8 +40,7 @@ module.exports = {
             //Se não encontrar, devolve erro 404    
             if (!petExist) {
                 return res.status(404).send('Nenhum Pet Encontrado!');
-            } else {
-                console.log(pet)
+            } else {                
                 const novo = await Pet.update(pet, {
                     id: pet.id,
                     resp: pet.resp

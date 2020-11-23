@@ -8,18 +8,18 @@
       <template slot="links">
         <sidebar-item
           :link="{
-            name: 'Dashboard',
+            name: 'Principal',
             icon: 'ni ni-tv-2 text-primary',
             path: '/dashboard'
           }"
-        />
-
-        <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/>
-        <sidebar-item :link="{name: 'Maps', icon: 'ni ni-pin-3 text-orange', path: '/maps'}"/>
-        <sidebar-item :link="{name: 'User Profile', icon: 'ni ni-single-02 text-yellow', path: '/profile'}"/>
-        <sidebar-item :link="{name: 'Tables', icon: 'ni ni-bullet-list-67 text-red', path: '/tables'}"/>
-        <sidebar-item :link="{name: 'Login', icon: 'ni ni-key-25 text-info', path: '/login'}"/>
-        <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/>
+        />      
+        <sidebar-item :link="{name: 'Pet', icon: ' fas fa-paw text-yellow', path: '/pet'}"/>
+        <sidebar-item :link="{name: 'Endereço', icon: 'ni ni-delivery-fast text-green', path: '/endereco'}"/>
+        
+        <sidebar-item :link="{name: 'Sair', icon: 'ni ni-user-run text-red', path: '/Login'}"/>
+         <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/> 
+        <sidebar-item :link=" {name: 'Tables', icon: 'ni ni-bullet-list-67 text-red', path: '/tables'}"/>        
+        <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/> 
 
       </template>
     </side-bar>
@@ -57,7 +57,7 @@
         if (this.$sidebar.showSidebar) {
           this.$sidebar.displaySidebar(false);
         }
-      }
+      }  
     }
   };
 </script>

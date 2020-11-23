@@ -33,6 +33,8 @@ const PetController = require('./controllers/PetController');
  */
 router.post('/auth/register', AuthController.register);
 
+router.put('/auth/register', AuthController.update);
+
 /**
  * @swagger
  * /auth:
