@@ -11,10 +11,12 @@ var conexao = sequelize.authenticate()
 
 sequelize.User = sequelize.import('./User.js');
 sequelize.Pet = sequelize.import('./Pet.js');
+sequelize.Endereco = sequelize.import('./Endereco.js');
 
 /* Relacionamneto */
 sequelize.User.hasMany(sequelize.Pet, { foreignKey: 'resp' });
 sequelize.Pet.belongsTo(sequelize.User, { foreignKey: 'resp' });
+sequelize.Pet.belongsTo(sequelize.Endereco, { foreignKey: 'resp' });
 
 sequelize.sync();
 

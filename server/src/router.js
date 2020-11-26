@@ -4,6 +4,7 @@ const router = express.Router();
 /*   Importa controllers */
 const AuthController = require('./controllers/AuthConroller');
 const PetController = require('./controllers/PetController');
+const EnderecoController = require('./controllers/EnderecoController');
 
 /* Auth e documentaçõa Swagger*/
 
@@ -156,4 +157,12 @@ router.delete('/pet/delete/:id([0-9]+)', PetController.delete);
 router.put('/pet/update', PetController.update);
 
 router.get('/pet/:id([0-9]+)', PetController.findByID);
+
+
+/* Rota de Endereco  */
+router.post('/endereco/add', EnderecoController.add);
+router.delete('/endereco/delete/:id([0-9]+)', EnderecoController.delete);
+router.put('/endereco/update', EnderecoController.update);
+router.get('/endereco/:id([0-9]+)', EnderecoController.findByID);
+
 module.exports = (app) => app.use(router);
