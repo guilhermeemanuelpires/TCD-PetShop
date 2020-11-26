@@ -21,10 +21,10 @@ module.exports = {
 
             delete createdUser.password;
 
-            return res.status(200).send({ user: createdUser });
+            return res.send({ status: 200, sucessMsg: 'Usuário Cadastrado com sucesso!', user: createdUser });
         } catch (e) {
             console.log(e);
-            return res.status(500).send('Não foi possível criar o usuário');
+            return res.send({ status: 500, errorMsg: 'Não foi possível criar o usuário' });
         }
     },
     async update(req, res) {
@@ -41,7 +41,7 @@ module.exports = {
             } else {
                 try {
                     const novo = await User.update(user, { where: { id: user.id } });
-                    
+
                     let novoRetorno = await User.findByPk(user.id);
                     //remove a senha!
                     novoRetorno = novoRetorno.get({ plain: true });

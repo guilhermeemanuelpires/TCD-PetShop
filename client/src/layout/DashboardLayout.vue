@@ -12,12 +12,14 @@
             icon: 'ni ni-tv-2 text-primary',
             path: '/dashboard'
           }"
-        />      
+        />
+        <sidebar-item :link="{name: 'Pefil', icon: 'ni ni-single-02 text-blue', path: '/profile'}"/>
         <sidebar-item :link="{name: 'Pet', icon: ' fas fa-paw text-yellow', path: '/pet'}"/>
-        <sidebar-item :link="{name: 'Endereço', icon: 'ni ni-delivery-fast text-green', path: '/endereco'}"/>
-        
+        <sidebar-item :link="{name: 'Endereço', icon: 'ni ni-delivery-fast text-green', path: '/endereco'}"/>        
         <sidebar-item :link="{name: 'Sair', icon: 'ni ni-user-run text-red', path: '/Login'}"/>
-         <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/> 
+
+        <hr>
+        <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/> 
         <sidebar-item :link=" {name: 'Tables', icon: 'ni ni-bullet-list-67 text-red', path: '/tables'}"/>        
         <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/> 
 

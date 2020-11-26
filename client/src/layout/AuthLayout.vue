@@ -7,7 +7,7 @@
       expand
     >
       <router-link slot="brand" class="navbar-brand" to="/">
-        <img src="img/brand/paw.png" />
+        <!-- <img src="img/brand/paw.png" /> -->
       </router-link>
 
       <template>

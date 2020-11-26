@@ -7,9 +7,9 @@
             <svg
               id="Capa_1"
               enable-background="new 0 0 412 412"
-              height="150"
+              height="100"
               viewBox="0 0 512 512"
-              width="150"
+              width="100"
               xmlns="http://www.w3.org/2000/svg"
             >
               <g>
@@ -68,21 +68,8 @@
               </g>
             </svg>
           </div>
-          <!-- <div class="btn-wrapper text-center">
-            <a href="#" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"
-                ><img src="img/icons/common/github.svg"
-              /></span>
-              <span class="btn-inner--text">Github</span>
-            </a>
-            <a href="#" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"
-                ><img src="img/icons/common/google.svg"
-              /></span>
-              <span class="btn-inner--text">Google</span>
-            </a>
-          </div> -->
         </div>
+
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
             <small>Cadastro de Usuario</small>
@@ -128,18 +115,7 @@
               v-model="model.password"
             >
             </base-input>
-            <!-- 
-                        <div class="text-muted font-italic">
-                            <small>password strength: <span class="text-success font-weight-700">strong</span></small>
-                        </div>
 
-                        <div class="row my-4">
-                            <div class="col-12">
-                                <base-checkbox class="custom-control-alternative">
-                                    <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
-                                </base-checkbox>
-                            </div>
-                        </div> -->
             <div class="text-center">
               <base-button type="primary" class="my-4" @click="Register()"
                 >Cadastrar-se</base-button
@@ -168,17 +144,49 @@ export default {
         username: "",
         email: "",
         fone: "",
-        password: "",
+        password: "",        
+        type:0
       },
       retorno: "",
     };
   },
   methods: {
     async Register() {
-      //   alert(JSON.stringify({ user: this.model }));
-      Auth.Register({ user: this.model }).then((response) => {
-        this.retorno.erro = response.data;
-      });
+      if (
+        this.model.name &&
+        this.model.username &&
+        this.model.email &&
+        this.model.fone &&
+        this.model.password
+      ) {
+        Auth.Register({ user: this.model }).then((response) => {
+          this.retorno = response.data;
+          if (this.retorno.status == 200) {
+            this.$notify({
+              type: "success",
+              title: this.retorno.sucessMsg,
+            });
+            //
+            localStorage.removeItem("petshop-token");
+            localStorage.setItem(
+              "petshop-token",
+              JSON.stringify({ user: this.retorno.user })
+            );
+
+            this.$router.push("/dashboard");
+          } else {
+            this.$notify({
+              type: "danger",
+              title: this.retorno.errorMsg,
+            });
+          }
+        });
+      } else {
+        this.$notify({
+          type: "warning",
+          title: "Necessário informar todos os campos!",
+        });
+      }
     },
   },
 };

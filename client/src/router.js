@@ -57,7 +57,7 @@ export default new Router({
         {
           path: '/endereco',
           name: 'Endereço',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Pet.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Endereco.vue')
         }
       ]
     },

@@ -155,4 +155,5 @@ router.delete('/pet/delete/:id([0-9]+)', PetController.delete);
  */
 router.put('/pet/update', PetController.update);
 
+router.get('/pet/:id([0-9]+)', PetController.findByID);
 module.exports = (app) => app.use(router);

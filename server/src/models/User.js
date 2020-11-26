@@ -43,6 +43,9 @@
  *      email:
  *        type: string
  *        description: E-mail do usuário.
+ *      type:
+ *        type: integer
+ *        description: Define tipo do usuário.
  *      updatedAt:
  *        type: datetime
  *        description: Data de alteração do usuário.
@@ -56,6 +59,7 @@
  *          password: A123
  *          fone: "4699999999"
  *          email: teste@gmail.com
+ *          type : 0
  */
 
 module.exports = (sequelize, DataType) => sequelize.define('user', {
@@ -73,5 +77,8 @@ module.exports = (sequelize, DataType) => sequelize.define('user', {
     },
     email: {
         type : DataType.STRING
+    },
+    type: {
+        type : DataType.INTEGER
     }
 });

@@ -1,16 +1,21 @@
 <template>
-    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-        <div class="container-fluid">
+  <nav
+    class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white"
+    id="sidenav-main"
+  >
+    <div class="container-fluid">
+      
 
-            <!--Toggler-->
-            <navbar-toggle-button @click.native="showSidebar">
-                <span class="navbar-toggler-icon"></span>
-            </navbar-toggle-button>
-            <router-link class="navbar-brand" to="/">
-                <img :src="logo" class="navbar-brand-img" alt="...">
-            </router-link>
+      <!--Toggler-->
+      <navbar-toggle-button @click.native="showSidebar">
+        <span class="navbar-toggler-icon"></span>
+      </navbar-toggle-button>
 
-            <!-- <slot name="mobile-right">
+      <router-link style="" to="/">
+        <img :src="logo" alt="" width="130px" height="120px" />
+      </router-link>      
+
+      <!-- <slot name="mobile-right">
                 <ul class="nav align-items-center d-md-none">
                     <base-dropdown class="nav-item" position="right">
                         <a slot="title" class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown"
@@ -59,32 +64,36 @@
                     </base-dropdown>
                 </ul>
             </slot> -->
-            <slot></slot>
-            <div v-show="$sidebar.showSidebar" class="navbar-collapse collapse show" id="sidenav-collapse-main">
+      <slot></slot>
+      <div
+        v-show="$sidebar.showSidebar"
+        class="navbar-collapse collapse show"
+        id="sidenav-collapse-main"
+      >
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <router-link to="/">
+                <img :src="logo" />
+              </router-link>
+            </div>
+            <div class="col-6 collapse-close">
+              <navbar-toggle-button
+                @click.native="closeSidebar"
+              ></navbar-toggle-button>
+            </div>
+          </div>
+        </div>
 
-                <div class="navbar-collapse-header d-md-none">
-                    <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <router-link to="/">
-                                <img :src="logo">
-                            </router-link>
-                        </div>
-                        <div class="col-6 collapse-close">
-                            <navbar-toggle-button @click.native="closeSidebar"></navbar-toggle-button>
-                        </div>
-                    </div>
-                </div>
-
-                <ul class="navbar-nav">
-                    <slot name="links">
-                    </slot>
-                </ul>
-                <!--Divider-->
-                <!-- <hr class="my-3"> -->
-                <!--Heading-->
-                <!-- <h6 class="navbar-heading text-muted">Documentation</h6> -->
-                <!--Navigation-->
-                <!-- <ul class="navbar-nav mb-md-3">
+        <ul class="navbar-nav">
+          <slot name="links"> </slot>
+        </ul>
+        <!--Divider-->
+        <!-- <hr class="my-3"> -->
+        <!--Heading-->
+        <!-- <h6 class="navbar-heading text-muted">Documentation</h6> -->
+        <!--Navigation-->
+        <!-- <ul class="navbar-nav mb-md-3">
                     <li class="nav-item">
                         <a class="nav-link"
                            href="https://demos.creative-tim.com/vue-argon-dashboard/documentation">
@@ -104,47 +113,48 @@
                         </a>
                     </li>
                 </ul> -->
-            </div>
-            </div>
-    </nav>
+      </div>
+    </div>
+  </nav>
 </template>
 <script>
-  import NavbarToggleButton from '@/components/NavbarToggleButton'
+import NavbarToggleButton from "@/components/NavbarToggleButton";
 
-  export default {
-    name: 'sidebar',
-    components: {
-      NavbarToggleButton
+export default {
+  name: "sidebar",
+  components: {
+    NavbarToggleButton,
+  },
+  props: {
+    logo: {
+      type: String,
+      default: "img/brand/pug.png",
+      description: "Sidebar app logo",
     },
-    props: {
-      logo: {
-        type: String,
-        default: 'img/brand/green.png',
-        description: 'Sidebar app logo'
-      },
-      autoClose: {
-        type: Boolean,
-        default: true,
-        description: 'Whether sidebar should autoclose on mobile when clicking an item'
-      }
+    autoClose: {
+      type: Boolean,
+      default: true,
+      description:
+        "Whether sidebar should autoclose on mobile when clicking an item",
     },
-    provide() {
-      return {
-        autoClose: this.autoClose
-      };
+  },
+  provide() {
+    return {
+      autoClose: this.autoClose,
+    };
+  },
+  methods: {
+    closeSidebar() {
+      this.$sidebar.displaySidebar(false);
     },
-    methods: {
-      closeSidebar() {
-        this.$sidebar.displaySidebar(false)
-      },
-      showSidebar() {
-        this.$sidebar.displaySidebar(true)
-      }
+    showSidebar() {
+      this.$sidebar.displaySidebar(true);
     },
-    beforeDestroy() {
-      if (this.$sidebar.showSidebar) {
-        this.$sidebar.showSidebar = false;
-      }
+  },
+  beforeDestroy() {
+    if (this.$sidebar.showSidebar) {
+      this.$sidebar.showSidebar = false;
     }
-  };
+  },
+};
 </script>
