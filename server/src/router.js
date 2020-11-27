@@ -5,6 +5,7 @@ const router = express.Router();
 const AuthController = require('./controllers/AuthConroller');
 const PetController = require('./controllers/PetController');
 const EnderecoController = require('./controllers/EnderecoController');
+const ServicoController = require('./controllers/ServicoController');
 
 /* Auth e documentaçõa Swagger*/
 
@@ -157,6 +158,7 @@ router.delete('/pet/delete/:id([0-9]+)', PetController.delete);
 router.put('/pet/update', PetController.update);
 
 router.get('/pet/:id([0-9]+)', PetController.findByID);
+router.get('/pet/count/:id([0-9]+)', PetController.findByIDCount);
 
 
 /* Rota de Endereco  */
@@ -164,5 +166,16 @@ router.post('/endereco/add', EnderecoController.add);
 router.delete('/endereco/delete/:id([0-9]+)', EnderecoController.delete);
 router.put('/endereco/update', EnderecoController.update);
 router.get('/endereco/:id([0-9]+)', EnderecoController.findByID);
+router.get('/endereco/count/:id([0-9]+)', EnderecoController.findByIDCount);
+
+/* Rota Servicos*/
+router.post('/servico/add', ServicoController.add);
+router.delete('/servico/delete/:id([0-9]+)', ServicoController.delete);
+router.get('/servico/:id([0-9]+)', ServicoController.findByID);
+router.get('/servico/count', ServicoController.findAllCount);
+router.get('/servico/count/:id([0-9]+)', ServicoController.findByIDCount);
+router.get('/servico', ServicoController.findAll);
+router.put('/servico/update', ServicoController.update);
+
 
 module.exports = (app) => app.use(router);

@@ -23,7 +23,7 @@ export default new Router({
       children: [
         {
           path: '/dashboard',
-          name: 'dashboard',          
+          name: 'dashboard',
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
@@ -39,16 +39,6 @@ export default new Router({
           name: 'profile',
           component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
         },
-        // {
-        //   path: '/maps',
-        //   name: 'maps',
-        //   component: () => import(/* webpackChunkName: "demo" */ './views/Maps.vue')
-        // },
-        {
-          path: '/tables',
-          name: 'tables',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
-        },
         {
           path: '/pet',
           name: 'pets',
@@ -58,6 +48,17 @@ export default new Router({
           path: '/endereco',
           name: 'Endereço',
           component: () => import(/* webpackChunkName: "demo" */ './views/Endereco.vue')
+        },
+        {
+          path: '/agenda',
+          name: 'Agenda',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Agenda.vue')
+        }
+        ,
+        {
+          path: '/services',
+          name: 'Services',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Services.vue')
         }
       ]
     },

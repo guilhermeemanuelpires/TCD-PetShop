@@ -98,4 +98,15 @@ module.exports = {
             return res.send({ status: 500, errorMsg: 'Erro ao cosultar pets!' });
         }
     },
+    async findByIDCount(req, res) {
+        const id = req.params.id;
+        try {
+            let endereco = await Endereco.findAll({ where: { resp: id } });
+            const enderecoCount = endereco.length;
+            return res.status(200).send({ status: 200, count: enderecoCount });
+        } catch (e) {
+            console.log(e);
+            return res.status(500).send('Erro ao cosultar totla de endereços!');
+        }
+    },
 }

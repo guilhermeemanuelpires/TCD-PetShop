@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <table class="table mt-3">
+      <table class="table mt-3" v-if="(pets.length > 0)">
         <thead class="thead-dark">
           <tr>
             <th class="text-white" scope="col">Nome</th>
@@ -131,7 +131,7 @@
 import Pet from "../services/models/Pet";
 
 export default {
-  name: "user-profile",
+  name: "Pet",
   mounted() {
     this.user = localStorage.getItem("petshop-token");
     this.model.resp = JSON.parse(this.user).user.id;

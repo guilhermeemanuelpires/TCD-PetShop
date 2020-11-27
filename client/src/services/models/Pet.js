@@ -5,8 +5,8 @@ export default {
     add: (body) => {
         return http.post('pet/add', body);
     },
-    Find: () => {
-        return http.get('pet/findall');
+    FindByiDCount: (id) => {
+        return http.get('pet/count/' + id);
     },
     FindByiD: (id) => {
         return http.get('pet/' + id);
